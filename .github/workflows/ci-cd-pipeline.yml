@@ -21,9 +21,6 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Build
-        run: npm run build # Your build script goes here
-
   deploy:
     needs: build
     runs-on: ubuntu-latest
