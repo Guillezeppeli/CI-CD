@@ -35,6 +35,6 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: gishejs/hello-node:latest,gishejs/hello-node:${{ github.sha }}
+          tags: gishejs/node-app:latest,gishejs/node-app:${{ github.sha }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
