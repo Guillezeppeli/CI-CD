@@ -1,11 +1,10 @@
-# nginx/Dockerfile
-FROM nginx:stable-alpine
+# Use the official Nginx image as a parent image
+FROM nginx:latest
 
-# Copy custom configuration file from the current directory
+# Copy the Nginx configuration file into the container
 COPY nginx.conf /etc/nginx/nginx.conf
 
-# When the container starts, NGINX will listen on port 80
+# Expose port 80 to the outside
 EXPOSE 80
 
-# Start NGINX using the command line executable
-CMD ["nginx", "-g", "daemon off;"]
+# Use the default command of Nginx image which starts Nginx
