@@ -1,4 +1,4 @@
-name: Node.js CI/CD Pipeline
+name: CI/CD Pipeline
 
 on:
   push:
@@ -19,7 +19,9 @@ jobs:
           node-version: "20"
 
       - name: Install Dependencies
-        run: npm install
+        run: |
+          cd node-app
+          npm install
 
   deploy:
     needs: build
@@ -35,5 +37,16 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: us-east-1
 
-    # Add steps for deploying to your server here.
-    # The specifics depend on your hosting solution and the service you are deploying to.
+      - name: Install kubectl
+        run: |
+          curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+          chmod +x ./kubectl
+          sudo mv ./kubectl /usr/local/bin/kubectl
+
+      - name: Update kubeconfig
+        run: |
+          aws eks --region ${{ secrets.AWS_REGION }} update-kubeconfig --name node-app
+
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f k8s/
