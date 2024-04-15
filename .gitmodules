@@ -1,3 +1,6 @@
 [submodule "node-app/node-app"]
 	path = node-app/node-app
 	url = https://github.com/Guillezeppeli/CI-CD.git
+[submodule "nginx/nginx"]
+	path = nginx/nginx
+	url = https://github.com/Guillezeppeli/CI-CD.git
