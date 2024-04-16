@@ -3,7 +3,7 @@ import express from "express";
 const app = express();
 
 app.get("/", (req, res) => {
-  res.send("Hello, Node with ECMAScript Modules!");
+  res.send("Hello, Node first test");
 });
 
 const PORT = process.env.PORT || 3000;
